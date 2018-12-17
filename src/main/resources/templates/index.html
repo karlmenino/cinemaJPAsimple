@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragment/header.html::header">
+</head>
+<body>
+<div th:replace="fragment/header.html::nav"></div>
+<h1>ajouter</h1>
+<form action="#" th:action="@{/}" th:object="${persons}" method="post">
+    <p>nom: <input type="text" th:field="*{surname}" /></p>
+    <p>prenom: <input type="text" th:field="*{givenname}" /></p>
+    <p>date de naissance: <input type="text" th:field="*{birthYear}" /></p>
+    <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+</form>
+<div th:each="personne:${actor}" class="row">
+    <div class="col-md-4">
+        <img alt="Bootstrap Image Preview" th:src="'/image/'+${personne.getImagePath()}" height="300" width="300" />
+    </div>
+    <div class="col-md-4">
+        <h2 th:text="${personne.getSurname()}">
+            Heading
+        </h2>
+        </p>
+        <p th:text="'prenom : '+${personne.getGivenname()}">
+            prenom de l'acteur
+        </p>
+        <p th:text="'date de naissance : '+${personne.getBirthYear()}">
+            naissance
+        </p>
+    </div>
+    <div class="col-md-4">
+        <a th:href="'/acteur/'+${personne.id}" >edit</a>
+        <a th:href="'/delete/'+${personne.id}"  onClick="javascript:return confirm('Voulez-vous vraiment supprimer cet élément ?')">delete</a></td>
+    </div>
+</div>
+</div>
+<div th:replace="fragment/footer.html::footer"></div>
+</body>
+</html>
